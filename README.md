@@ -85,26 +85,26 @@ LangChain
 
 ## 📁 Project Structure
 
-AI-Study-Planner/
-│
-├── agents/
-│   ├── planner_agent.py
-│   ├── structurer_agent.py
-│   ├── resource_agent.py
-│   └── scheduler_agent.py
-│
-├── tools/
-│   ├── planner_tool.py
-│   ├── structurer_tool.py
-│   ├── resource_tool.py
-│   └── scheduler_tool.py
-│
-├── tests/
-│
-├── main.py
-├── state.py
-├── requirements.txt
-└── README.md
+        AI-Study-Planner/
+        │
+        ├── agents/
+        │   ├── planner_agent.py
+        │   ├── structurer_agent.py
+        │   ├── resource_agent.py
+        │   └── scheduler_agent.py
+        │
+        ├── tools/
+        │   ├── planner_tool.py
+        │   ├── structurer_tool.py
+        │   ├── resource_tool.py
+        │   └── scheduler_tool.py
+        │
+        ├── tests/
+        │
+        ├── main.py
+        ├── state.py
+        ├── requirements.txt
+        └── README.md
 
 ## 🚀 Installation
 1. Clone Repository

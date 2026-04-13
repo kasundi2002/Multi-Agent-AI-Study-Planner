@@ -134,11 +134,12 @@ Run tests:
 pytest
 
 ## 👥 Team Members
-Name	Agent	Tool
-Member 1	Planner Agent	load_topics
-Member 2	Structurer Agent	organize_topics
-Member 3	Resource Agent	find_resources
-Member 4	Scheduler Agent	create_schedule
+
+        Name	    Agent	            Tool
+        Member 1	Planner Agent	    load_topics
+        Member 2	Structurer Agent	organize_topics
+        Member 3	Resource Agent	    find_resources
+        Member 4	Scheduler Agent	    create_schedule
 
 ## 📄 Assignment
 

@@ -74,15 +74,16 @@ state = {
     "resources": {},
     "schedule": ""
 }
+```
 
-⚙️ Tech Stack
+## ⚙️ Tech Stack
 Python
 CrewAI
 Ollama (Local LLM)
 Llama3 / Phi3
 LangChain
 
-📁 Project Structure
+## 📁 Project Structure
 
 AI-Study-Planner/
 │
@@ -105,48 +106,41 @@ AI-Study-Planner/
 ├── requirements.txt
 └── README.md
 
-🚀 Installation
+## 🚀 Installation
 1. Clone Repository
 git clone <repo-url>
 cd AI-Study-Planner
 2. Create Virtual Environment
 python -m venv venv
-
 Activate:
-
 Windows:
-
 venv\Scripts\activate
-
 Mac/Linux:
-
 source venv/bin/activate
 3. Install Dependencies
 pip install -r requirements.txt
 4. Install Ollama
 
 Download from:
-
 https://ollama.com
 
 Pull model:
-
 ollama pull llama3
 ▶️ Run Project
 python main.py
 🧪 Testing
 
 Run tests:
-
 pytest
-👥 Team Members
+
+## 👥 Team Members
 Name	Agent	Tool
 Member 1	Planner Agent	load_topics
 Member 2	Structurer Agent	organize_topics
 Member 3	Resource Agent	find_resources
 Member 4	Scheduler Agent	create_schedule
 
-📄 Assignment
+## 📄 Assignment
 
 SE4010 – CTSE
 Assignment 2 – Multi-Agent System

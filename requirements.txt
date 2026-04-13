@@ -1,0 +1,4 @@
+crewai
+ollama
+langchain
+python-dotenv

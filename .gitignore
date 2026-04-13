@@ -1,0 +1,54 @@
+#Python
+
+pycache/
+*.py[cod]
+*$py.class
+
+#Virtual Environment
+
+venv/
+env/
+ENV/
+
+#VS Code
+
+.vscode/
+
+#Mac
+
+.DS_Store
+
+#Windows
+
+Thumbs.db
+
+#Logs
+
+*.log
+
+#Environment Variables
+
+.env
+
+#Python testing
+
+.pytest_cache/
+
+#Coverage
+
+.coverage
+htmlcov/
+
+#Jupyter
+
+.ipynb_checkpoints/
+
+#Build files
+
+build/
+dist/
+*.egg-info/
+
+#Ollama models (optional large files)
+
+*.gguf

@@ -2,3 +2,5 @@ crewai
 ollama
 langchain
 python-dotenv
+pytest
+hypothesis

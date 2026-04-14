@@ -1,6 +1,6 @@
 #Python
 
-pycache/
+__pycache__/
 *.py[cod]
 *$py.class
 
@@ -33,6 +33,7 @@ Thumbs.db
 #Python testing
 
 .pytest_cache/
+.hypothesis/
 
 #Coverage
 
@@ -48,7 +49,9 @@ htmlcov/
 build/
 dist/
 *.egg-info/
+output/
 
 #Ollama models (optional large files)
 
 *.gguf
+logs.jsonl

@@ -1,147 +1,172 @@
-# 🧠 Multi-Agent AI Study Planner
+# Multi-Agent AI Study Planner
 
-## 📌 Project Overview
+SE4010 CTSE Assignment 2 - Machine Learning
 
-This project implements a **Multi-Agent AI Study Planner System** that automatically generates a structured learning plan for a given subject.
+## Project Overview
 
-The system uses **multiple AI agents** that collaborate to:
+This project builds a local-only Multi-Agent System (MAS) that converts a user goal such as:
 
-- Break down a subject into learning topics
-- Organize topics logically
-- Find learning resources
-- Generate a study schedule
+`I want to learn Machine Learning in 2 weeks`
 
-This project is developed for **SE4010 – CTSE Assignment 2**.
+into a complete study output:
 
----
+- topic decomposition
+- topic structuring (beginner to advanced)
+- resource mapping
+- day-wise study schedule
+- saved final plan artifact
 
-## 🧠 Multi-Agent Architecture
+The implementation is designed to satisfy:
 
-The system consists of 4 agents:
+- Multi-Agent orchestration (4 agents)
+- custom Python tool usage
+- explicit global state management
+- AgentOps style observability
+- automated evaluation scripts
 
-### 🧠 Planner Agent
-- Breaks subject into learning topics
+## Architecture
 
-### 🧩 Content Structurer Agent
-- Organizes topics from beginner to advanced
+### Agents
 
-### 🔎 Resource Finder Agent
-- Finds learning resources
+1. Planner Agent
+2. Content Structurer Agent
+3. Resource Finder Agent
+4. Scheduler Agent
 
-### 📅 Scheduler Agent
-- Creates study schedule
+### Workflow
 
----
-
-## 🔁 Workflow
-
-User Input
-↓
-Planner Agent
-↓
-Structurer Agent
-↓
-Resource Finder Agent
-↓
-Scheduler Agent
-↓
-Final Study Plan
-
-
----
-
-## 🛠 Tools Used
-
-Each agent uses custom Python tools:
-
-- `load_topics()`
-- `organize_topics()`
-- `find_resources()`
-- `create_schedule()`
-- `save_plan()`
-
----
-
-## 🧠 Global State Management
-
-The system uses a shared global state:
-
-```python
-state = {
-    "goal": "",
-    "topics": [],
-    "structured_topics": [],
-    "resources": {},
-    "schedule": ""
-}
+```mermaid
+flowchart TD
+    userInput[UserInput] --> plannerAgent[PlannerAgent]
+    plannerAgent --> contentStructurer[ContentStructurerAgent]
+    contentStructurer --> resourceFinder[ResourceFinderAgent]
+    resourceFinder --> schedulerAgent[SchedulerAgent]
+    schedulerAgent --> finalStudyPlan[FinalStudyPlan]
 ```
 
-## ⚙️ Tech Stack
-Python
-CrewAI
-Ollama (Local LLM)
-Llama3 / Phi3
-LangChain
+### State Transition Mapping
 
-## 📁 Project Structure
+```mermaid
+flowchart LR
+    plannerAgent[PlannerAgent] --> stateTopics[state.topics]
+    contentStructurer[ContentStructurerAgent] --> stateStructured[state.structured_topics]
+    resourceFinder[ResourceFinderAgent] --> stateResources[state.resources]
+    schedulerAgent[SchedulerAgent] --> stateSchedule[state.schedule]
+    schedulerAgent --> stateFile[state.final_plan_path]
+```
 
-        AI-Study-Planner/
-        │
-        ├── agents/
-        │   ├── planner_agent.py
-        │   ├── structurer_agent.py
-        │   ├── resource_agent.py
-        │   └── scheduler_agent.py
-        │
-        ├── tools/
-        │   ├── planner_tool.py
-        │   ├── structurer_tool.py
-        │   ├── resource_tool.py
-        │   └── scheduler_tool.py
-        │
-        ├── tests/
-        │
-        ├── main.py
-        ├── state.py
-        ├── requirements.txt
-        └── README.md
+## Global State Contract
 
-## 🚀 Installation
-1. Clone Repository
-git clone <repo-url>
-cd AI-Study-Planner
-2. Create Virtual Environment
-python -m venv venv
-Activate:
-Windows:
-venv\Scripts\activate
-Mac/Linux:
-source venv/bin/activate
-3. Install Dependencies
+Defined in `state.py` as `StudyPlannerState`:
+
+- `user_goal: str`
+- `days: int`
+- `topics: list[str]`
+- `structured_topics: list[str]`
+- `resources: dict[str, list[str]]`
+- `schedule: dict[str, list[str]]`
+- `final_plan_path: str`
+- `trace_id: str`
+
+Each stage owns one state section and passes it forward.
+
+## Tools
+
+Custom tools in `tools/`:
+
+- `load_topics(subject)` - curated topic decomposition with fallback
+- `organize_topics(topics)` - pedagogical ordering
+- `get_resources(topic)` - hybrid retrieval:
+  - curated local mapping
+  - free public API (Wikipedia summary endpoint)
+  - safe fallback search links
+- `create_schedule(topics, days)` - day-wise topic scheduling
+- `save_plan(plan, output_path)` - persist final JSON output
+
+## Observability (AgentOps Evidence)
+
+Structured traces are stored in `logs.jsonl` with:
+
+- `timestamp`
+- `agent`
+- `event_type`
+- `trace_id`
+- `input`
+- `tool_name`
+- `tool_args`
+- `output`
+- `state_delta`
+
+This provides clear evidence of task start/end and tool usage per agent.
+
+## Project Structure
+
+```text
+Multi-Agent AI Study Planner/
+├── agents/
+├── tools/
+├── tests/
+│   ├── evaluate_llm_judge.py
+│   ├── test_pipeline_properties.py
+│   ├── test_scheduler_properties.py
+│   └── results/
+├── logger.py
+├── main.py
+├── state.py
+├── tasks.py
+└── requirements.txt
+```
+
+## Setup and Run
+
+1. Create and activate virtual environment
+2. Install dependencies:
+
+```bash
 pip install -r requirements.txt
-4. Install Ollama
+```
 
-Download from:
-https://ollama.com
+3. Install and run Ollama locally
+4. Pull local model:
 
-Pull model:
-ollama pull llama3
-▶️ Run Project
+```bash
+ollama pull llama3:8b
+```
+
+5. Run system:
+
+```bash
 python main.py
-🧪 Testing
+```
 
-Run tests:
+Generated artifacts:
+
+- final plan: `output/study_plan.json`
+- logs: `logs.jsonl`
+
+## Evaluation
+
+### Deterministic + Property-based tests
+
+```bash
 pytest
+```
 
-## 👥 Team Members
+### Local LLM-as-a-Judge evaluation
 
-        Name	    Agent	            Tool
-        Member 1	Planner Agent	    load_topics
-        Member 2	Structurer Agent	organize_topics
-        Member 3	Resource Agent	    find_resources
-        Member 4	Scheduler Agent	    create_schedule
+```bash
+python tests/evaluate_llm_judge.py
+```
 
-## 📄 Assignment
+This saves scoring evidence to:
 
-SE4010 – CTSE
-Assignment 2 – Multi-Agent System
+- `tests/results/llm_judge_result.json`
+
+## Team Responsibility Template
+
+Use this mapping in your report:
+
+- Member 1: Planner Agent + `load_topics` + planner evaluation cases
+- Member 2: Structurer Agent + `organize_topics` + structurer evaluation cases
+- Member 3: Resource Agent + `get_resources` + resource relevance evaluation
+- Member 4: Scheduler Agent + `create_schedule` and `save_plan` + schedule validity evaluation

@@ -1,0 +1,10 @@
+{
+  "judge_result": {
+    "coverage": 0,
+    "ordering_quality": 0,
+    "resource_relevance": 0,
+    "schedule_feasibility": 0,
+    "overall_comment": "Local Ollama judge unavailable: HTTP Error 404: Not Found"
+  },
+  "trace_id": ""
+}

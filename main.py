@@ -3,14 +3,16 @@ from typing import Dict, List
 
 from logger import log_event
 from state import StudyPlannerState, create_initial_state
+from tools.difficulty_tool import analyze_difficulty_impl
 from tools.planner_tool import load_topics_impl
+from tools.quiz_tool import generate_quiz_impl
 from tools.resource_tool import get_resources_impl
 from tools.scheduler_tool import create_schedule_impl, save_plan_impl
 from tools.structurer_tool import organize_topics_impl
 
 
 def run_pipeline(subject: str, days: int) -> StudyPlannerState:
-    """Run the sequential 4-agent pipeline and return full global state."""
+    """Run the sequential 6-agent pipeline and return full global state."""
     state = create_initial_state(user_goal=subject, days=days)
     trace_id = state["trace_id"]
 
@@ -57,7 +59,31 @@ def run_pipeline(subject: str, days: int) -> StudyPlannerState:
         state_delta={"structured_topics": structured_topics},
     )
 
-    # 3) Resource Finder Agent owns state.resources
+    # 3) Difficulty Analyzer Agent owns state.difficulties
+    log_event(
+        agent="DifficultyAnalyzerAgent",
+        event_type="task_start",
+        trace_id=trace_id,
+        input_data={"structured_topics": structured_topics},
+    )
+    log_event(
+        agent="DifficultyAnalyzerAgent",
+        event_type="tool_call",
+        trace_id=trace_id,
+        tool_name="analyze_difficulty",
+        tool_args={"topics_count": len(structured_topics)},
+    )
+    difficulties = analyze_difficulty_impl(topics=structured_topics)
+    state["difficulties"] = difficulties
+    log_event(
+        agent="DifficultyAnalyzerAgent",
+        event_type="task_end",
+        trace_id=trace_id,
+        output_data={"difficulties": difficulties},
+        state_delta={"difficulties": difficulties},
+    )
+
+    # 4) Resource Finder Agent owns state.resources
     resources: Dict[str, List[str]] = {}
     log_event(
         agent="ResourceFinderAgent",
@@ -83,7 +109,7 @@ def run_pipeline(subject: str, days: int) -> StudyPlannerState:
         state_delta={"resources_count": len(resources)},
     )
 
-    # 4) Scheduler Agent owns state.schedule and state.final_plan_path
+    # 5) Scheduler Agent owns state.schedule
     log_event(
         agent="SchedulerAgent",
         event_type="task_start",
@@ -99,13 +125,50 @@ def run_pipeline(subject: str, days: int) -> StudyPlannerState:
     )
     schedule = create_schedule_impl(topics=structured_topics, days=days)
     state["schedule"] = schedule
+    log_event(
+        agent="SchedulerAgent",
+        event_type="task_end",
+        trace_id=trace_id,
+        output_data={"schedule_days": len(schedule)},
+        state_delta={"schedule": schedule},
+    )
+
+    # 6) Quiz Generator Agent owns state.quizzes
+    quizzes: Dict[str, List[str]] = {}
+    log_event(
+        agent="QuizGeneratorAgent",
+        event_type="task_start",
+        trace_id=trace_id,
+        input_data={"structured_topics_count": len(structured_topics)},
+    )
+    for topic in structured_topics:
+        log_event(
+            agent="QuizGeneratorAgent",
+            event_type="tool_call",
+            trace_id=trace_id,
+            tool_name="generate_quiz",
+            tool_args={"topic": topic},
+        )
+        quizzes[topic] = generate_quiz_impl(topic=topic)
+    state["quizzes"] = quizzes
+    log_event(
+        agent="QuizGeneratorAgent",
+        event_type="task_end",
+        trace_id=trace_id,
+        output_data={"quizzes_topics": list(quizzes.keys())},
+        state_delta={"quizzes_count": len(quizzes)},
+    )
+
+    # Save final plan (includes all 6-agent outputs)
     final_plan = {
         "goal": state["user_goal"],
         "days": state["days"],
         "topics": state["topics"],
         "structured_topics": state["structured_topics"],
+        "difficulties": state["difficulties"],
         "resources": state["resources"],
         "schedule": state["schedule"],
+        "quizzes": state["quizzes"],
         "trace_id": state["trace_id"],
     }
     save_path = save_plan_impl(plan=final_plan, output_path="output/study_plan.json")
@@ -115,7 +178,7 @@ def run_pipeline(subject: str, days: int) -> StudyPlannerState:
         event_type="task_end",
         trace_id=trace_id,
         output_data={"save_path": save_path},
-        state_delta={"schedule": schedule, "final_plan_path": save_path},
+        state_delta={"final_plan_path": save_path},
     )
     return state
 

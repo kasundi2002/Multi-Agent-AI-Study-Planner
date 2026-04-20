@@ -3,6 +3,8 @@ from agents.planner_agent import planner_agent
 from agents.structurer_agent import structurer_agent
 from agents.resource_agent import resource_agent
 from agents.scheduler_agent import scheduler_agent
+from agents.difficulty_agent import difficulty_agent
+from agents.quiz_agent import quiz_agent
 
 planner_task = Task(
     description=(
@@ -45,4 +47,24 @@ scheduler_task = Task(
     expected_output='{"schedule": {"Day 1": ["..."]}, "save_path": "path"}',
     agent=scheduler_agent,
     context=[resource_task]
+)
+
+difficulty_task = Task(
+    description=(
+        "Analyze the difficulty of the structured topics using analyze_difficulty tool. "
+        "Return a JSON object with key `difficulties` containing {'topic': 'Easy/Medium/Hard'}."
+    ),
+    expected_output='{"difficulties": {"topic": "Easy"}}',
+    agent=difficulty_agent,
+    context=[structurer_task]
+)
+
+quiz_task = Task(
+    description=(
+        "For each structured topic, use the generate_quiz tool to generate quiz questions. "
+        "Return a JSON object with key `quizzes` containing {'topic': ['Q1', 'Q2']}."
+    ),
+    expected_output='{"quizzes": {"topic": ["Q1"]}}',
+    agent=quiz_agent,
+    context=[structurer_task]
 )

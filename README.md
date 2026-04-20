@@ -139,6 +139,33 @@ ollama pull llama3:8b
 python main.py
 ```
 
+## Web UI (React + API)
+
+Run backend API (Terminal 1):
+
+```bash
+uvicorn api:app --reload --port 8000
+```
+
+Run frontend app (Terminal 2):
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open `http://127.0.0.1:5173` and submit:
+- Subject (example: `Machine Learning`)
+- Days (example: `14`)
+
+The UI renders:
+- topics
+- structured topics
+- resources
+- day-wise schedule
+- trace id and final saved plan path
+
 Generated artifacts:
 
 - final plan: `output/study_plan.json`
@@ -149,7 +176,7 @@ Generated artifacts:
 ### Deterministic + Property-based tests
 
 ```bash
-pytest
+python -m pytest
 ```
 
 ### Local LLM-as-a-Judge evaluation

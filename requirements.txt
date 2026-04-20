@@ -4,3 +4,5 @@ langchain
 python-dotenv
 pytest
 hypothesis
+fastapi
+uvicorn

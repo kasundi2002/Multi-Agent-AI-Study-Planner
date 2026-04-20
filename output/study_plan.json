@@ -19,6 +19,15 @@
     "Knowledge Representation",
     "Problem Solving and Search"
   ],
+  "difficulties": {
+    "Introduction to AI": "Easy",
+    "Machine Learning Fundamentals": "Medium",
+    "Neural Networks": "Hard",
+    "Deep Learning": "Hard",
+    "Ethics in AI": "Medium",
+    "Knowledge Representation": "Medium",
+    "Problem Solving and Search": "Medium"
+  },
   "resources": {
     "Introduction to AI": [
       "https://www.google.com/search?q=Introduction%20to%20AI%20learning%20resources",
@@ -72,5 +81,32 @@
       "Problem Solving and Search"
     ]
   },
-  "trace_id": "2d536966-af47-4757-80c0-f98c8b3a6fec"
+  "quizzes": {
+    "Introduction to AI": [
+      "What is Artificial Intelligence?",
+      "Name two AI applications",
+      "What is Machine Learning?"
+    ],
+    "Machine Learning Fundamentals": [
+      "What is Machine Learning Fundamentals?"
+    ],
+    "Neural Networks": [
+      "What is a neuron?",
+      "What is backpropagation?",
+      "What is activation function?"
+    ],
+    "Deep Learning": [
+      "What is Deep Learning?"
+    ],
+    "Ethics in AI": [
+      "What is Ethics in AI?"
+    ],
+    "Knowledge Representation": [
+      "What is Knowledge Representation?"
+    ],
+    "Problem Solving and Search": [
+      "What is Problem Solving and Search?"
+    ]
+  },
+  "trace_id": "d66ea615-d98a-4521-bf2d-8a7a5a516dfb"
 }

@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from hypothesis import given, strategies as st
 
 from tools.scheduler_tool import create_schedule_impl

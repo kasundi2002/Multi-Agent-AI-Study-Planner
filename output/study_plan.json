@@ -1,112 +1,139 @@
 {
-  "goal": "Artificial Intelligence",
-  "days": 7,
+  "goal": "Machine Learning",
+  "days": 5,
   "topics": [
-    "Introduction to AI",
-    "Problem Solving and Search",
-    "Knowledge Representation",
-    "Machine Learning Fundamentals",
+    "Introduction to Machine Learning",
+    "Python for ML",
+    "Data Preprocessing",
+    "Supervised Learning",
+    "Regression",
+    "Classification",
+    "Model Evaluation",
+    "Unsupervised Learning",
     "Neural Networks",
-    "Deep Learning",
-    "Ethics in AI"
+    "Mini Project"
   ],
   "structured_topics": [
-    "Introduction to AI",
-    "Machine Learning Fundamentals",
+    "Introduction to Machine Learning",
+    "Python for ML",
+    "Data Preprocessing",
+    "Supervised Learning",
+    "Unsupervised Learning",
+    "Regression",
+    "Classification",
+    "Model Evaluation",
     "Neural Networks",
-    "Deep Learning",
-    "Ethics in AI",
-    "Knowledge Representation",
-    "Problem Solving and Search"
+    "Mini Project"
   ],
   "difficulties": {
-    "Introduction to AI": "Easy",
-    "Machine Learning Fundamentals": "Medium",
+    "Introduction to Machine Learning": "Easy",
+    "Python for ML": "Medium",
+    "Data Preprocessing": "Medium",
+    "Supervised Learning": "Medium",
+    "Unsupervised Learning": "Medium",
+    "Regression": "Medium",
+    "Classification": "Medium",
+    "Model Evaluation": "Medium",
     "Neural Networks": "Hard",
-    "Deep Learning": "Hard",
-    "Ethics in AI": "Medium",
-    "Knowledge Representation": "Medium",
-    "Problem Solving and Search": "Medium"
+    "Mini Project": "Medium"
   },
   "resources": {
-    "Introduction to AI": [
-      "https://www.google.com/search?q=Introduction%20to%20AI%20learning%20resources",
-      "https://www.youtube.com/results?search_query=Introduction%20to%20AI%20tutorial"
+    "Introduction to Machine Learning": [
+      "https://www.coursera.org/learn/machine-learning",
+      "https://developers.google.com/machine-learning/crash-course"
     ],
-    "Machine Learning Fundamentals": [
-      "https://www.google.com/search?q=Machine%20Learning%20Fundamentals%20learning%20resources",
-      "https://www.youtube.com/results?search_query=Machine%20Learning%20Fundamentals%20tutorial"
+    "Python for ML": [
+      "https://www.google.com/search?q=Python%20for%20ML%20learning%20resources",
+      "https://www.youtube.com/results?search_query=Python%20for%20ML%20tutorial"
+    ],
+    "Data Preprocessing": [
+      "https://www.google.com/search?q=Data%20Preprocessing%20learning%20resources",
+      "https://www.youtube.com/results?search_query=Data%20Preprocessing%20tutorial"
+    ],
+    "Supervised Learning": [
+      "https://scikit-learn.org/stable/supervised_learning.html",
+      "https://www.ibm.com/topics/supervised-learning"
+    ],
+    "Unsupervised Learning": [
+      "https://scikit-learn.org/stable/unsupervised_learning.html",
+      "https://www.ibm.com/topics/unsupervised-learning"
+    ],
+    "Regression": [
+      "https://www.google.com/search?q=Regression%20learning%20resources",
+      "https://www.youtube.com/results?search_query=Regression%20tutorial"
+    ],
+    "Classification": [
+      "https://www.google.com/search?q=Classification%20learning%20resources",
+      "https://www.youtube.com/results?search_query=Classification%20tutorial"
+    ],
+    "Model Evaluation": [
+      "https://www.google.com/search?q=Model%20Evaluation%20learning%20resources",
+      "https://www.youtube.com/results?search_query=Model%20Evaluation%20tutorial"
     ],
     "Neural Networks": [
       "https://www.deeplearning.ai/short-courses/",
       "https://www.ibm.com/topics/neural-networks"
     ],
-    "Deep Learning": [
-      "https://www.google.com/search?q=Deep%20Learning%20learning%20resources",
-      "https://www.youtube.com/results?search_query=Deep%20Learning%20tutorial"
-    ],
-    "Ethics in AI": [
-      "https://www.google.com/search?q=Ethics%20in%20AI%20learning%20resources",
-      "https://www.youtube.com/results?search_query=Ethics%20in%20AI%20tutorial"
-    ],
-    "Knowledge Representation": [
-      "https://www.google.com/search?q=Knowledge%20Representation%20learning%20resources",
-      "https://www.youtube.com/results?search_query=Knowledge%20Representation%20tutorial"
-    ],
-    "Problem Solving and Search": [
-      "https://www.google.com/search?q=Problem%20Solving%20and%20Search%20learning%20resources",
-      "https://www.youtube.com/results?search_query=Problem%20Solving%20and%20Search%20tutorial"
+    "Mini Project": [
+      "https://www.google.com/search?q=Mini%20Project%20learning%20resources",
+      "https://www.youtube.com/results?search_query=Mini%20Project%20tutorial"
     ]
   },
   "schedule": {
     "Day 1": [
-      "Introduction to AI"
+      "Introduction to Machine Learning",
+      "Regression"
     ],
     "Day 2": [
-      "Machine Learning Fundamentals"
+      "Python for ML",
+      "Classification"
     ],
     "Day 3": [
-      "Neural Networks"
+      "Data Preprocessing",
+      "Model Evaluation"
     ],
     "Day 4": [
-      "Deep Learning"
+      "Supervised Learning",
+      "Neural Networks"
     ],
     "Day 5": [
-      "Ethics in AI"
-    ],
-    "Day 6": [
-      "Knowledge Representation"
-    ],
-    "Day 7": [
-      "Problem Solving and Search"
+      "Unsupervised Learning",
+      "Mini Project"
     ]
   },
   "quizzes": {
-    "Introduction to AI": [
-      "What is Artificial Intelligence?",
-      "Name two AI applications",
-      "What is Machine Learning?"
+    "Introduction to Machine Learning": [
+      "What is Introduction to Machine Learning?"
     ],
-    "Machine Learning Fundamentals": [
-      "What is Machine Learning Fundamentals?"
+    "Python for ML": [
+      "What is Python for ML?"
+    ],
+    "Data Preprocessing": [
+      "What is Data Preprocessing?"
+    ],
+    "Supervised Learning": [
+      "What is Supervised Learning?"
+    ],
+    "Unsupervised Learning": [
+      "What is Unsupervised Learning?"
+    ],
+    "Regression": [
+      "What is Regression?"
+    ],
+    "Classification": [
+      "What is Classification?"
+    ],
+    "Model Evaluation": [
+      "What is Model Evaluation?"
     ],
     "Neural Networks": [
       "What is a neuron?",
       "What is backpropagation?",
       "What is activation function?"
     ],
-    "Deep Learning": [
-      "What is Deep Learning?"
-    ],
-    "Ethics in AI": [
-      "What is Ethics in AI?"
-    ],
-    "Knowledge Representation": [
-      "What is Knowledge Representation?"
-    ],
-    "Problem Solving and Search": [
-      "What is Problem Solving and Search?"
+    "Mini Project": [
+      "What is Mini Project?"
     ]
   },
-  "trace_id": "d66ea615-d98a-4521-bf2d-8a7a5a516dfb"
+  "trace_id": "65122d1d-bfa8-4589-98ff-3928df1fad1b"
 }

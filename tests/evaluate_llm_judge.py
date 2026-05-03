@@ -3,6 +3,8 @@ from pathlib import Path
 import sys
 from urllib.error import URLError
 from urllib.request import Request, urlopen
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
